@@ -7,9 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.airbnb.lottie.LottieAnimationView;
 
 public class PlaceholderFragment extends Fragment {
-
+    private LottieAnimationView animationView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,7 +32,20 @@ public class PlaceholderFragment extends Fragment {
             public void run() {
                 // 这里会在 5s 后执行
                 // TODO ex3-4：实现动画，将 lottie 控件淡出，列表数据淡入
+                animationView = getActivity().findViewById(R.id.animation_view);
+                animationView.animate()
+                        .alpha(0f)
+                        .setDuration(1000)
+                        .setListener(null);//动画淡出
+
+                ListView line = getActivity().findViewById(R.id.list);
+                line.animate()
+                        .alpha(1f)
+                        .setDuration(1000)
+                        .setListener(null);//列表淡入
+
             }
         }, 5000);
     }
+
 }
